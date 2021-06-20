@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
@@ -30,7 +31,7 @@ class Create extends Component
     public function submit()
     {
         $this->validate();
-        $this->user->password = $this->password;
+        $this->user->password = Hash::make($this->password);
         $this->user->save();
         $this->user->roles()->sync($this->roles);
 
