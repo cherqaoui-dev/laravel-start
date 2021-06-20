@@ -1,4 +1,3 @@
-window._ = require('lodash');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6,9 +5,20 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+ try {
+  window.$ = window.jQuery = require('jquery');
+  window._ = require('lodash');
+  require('select2');
+  window.Dropzone = require('dropzone').default;
+  require('flatpickr');
+  require('@fortawesome/fontawesome-free/js/all');
+  require('alpinejs');
+
+  window.axios = require('axios');
+  window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+} catch (e) {}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
